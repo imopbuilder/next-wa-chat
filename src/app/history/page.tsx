@@ -15,9 +15,9 @@ export default function page() {
 				<section>
 					<div className='w-maxi mx-auto py-5'>
 						<div className='flex items-center justify-between mb-3'>
-							<h2 className='text-2xl'>History</h2>
+							<h2 className='text-2xl font-bold'>History</h2>
 							<DeleteContactBtn>
-								<Trash2 size={36} className='bg-red-500 text-background rounded-full p-2 hover:scale-105 duration-200' />
+								<Trash2 size={18} className='scale-100 hover:scale-110 duration-200' />
 							</DeleteContactBtn>
 						</div>
 						<div>
