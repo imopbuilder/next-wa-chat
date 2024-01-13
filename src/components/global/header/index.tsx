@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ToggleTheme } from './toggle-themes';
+import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
 	return (
@@ -11,7 +11,7 @@ export default function Header() {
 					</Link>
 				</div>
 				<div>
-					<ToggleTheme />
+					<ThemeToggle />
 				</div>
 			</div>
 		</header>
