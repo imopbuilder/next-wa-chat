@@ -41,7 +41,7 @@ function ContactCard({ contact }: { contact: string }) {
 	const { handleCopy } = useCopy();
 	return (
 		<div className='py-2.5 px-3.5 mb-4 last:mb-0 bg-muted text-sm font-aldrich rounded-lg border flex items-center justify-between'>
-			<p>+{contact}</p>
+			<p className='relative top-0.5'>+{contact}</p>
 			<div className='flex items-center justify-center gap-2 text-muted-foreground'>
 				<button type='button' className='p-1 hover:text-foreground duration-300' onClick={() => handleCopy(contact)}>
 					<Copy size={16} />

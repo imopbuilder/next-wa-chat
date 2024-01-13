@@ -61,7 +61,7 @@ export default function TelNumberForm() {
 												className={cn('w-full h-10 justify-between border', !field.value && 'text-muted-foreground')}
 											>
 												{field.value ? (
-													<span className='font-medium'>
+													<span className='font-medium relative top-[1px]'>
 														<span className='mr-3 font-aldrich'>+{DAIL_CODES.find((dailCode) => dailCode.code === field.value)?.code}</span>
 														{DAIL_CODES.find((dailCode) => dailCode.code === field.value)?.country}
 													</span>
@@ -106,7 +106,7 @@ export default function TelNumberForm() {
 							<FormItem>
 								<FormControl>
 									<Input
-										className='font-aldrich placeholder:font-nunito shadow-none'
+										className='font-aldrich pt-2.5 sm:py-2 placeholder:font-nunito shadow-none'
 										placeholder='Tel number'
 										type='number'
 										inputMode='numeric'
