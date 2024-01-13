@@ -15,7 +15,7 @@ export default function page() {
 			<Header />
 			<main>
 				<section>
-					<div className='max-w-2xl mx-auto py-5 min-h-dvh'>
+					<div className='max-w-2xl mx-auto py-5 px-4 md:px-5 min-h-dvh'>
 						<div className='flex items-center justify-between mb-3 border-b pb-3'>
 							<h2 className='text-2xl font-bold'>History</h2>
 							<DeleteContactBtn>

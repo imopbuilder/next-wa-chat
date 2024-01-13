@@ -47,9 +47,6 @@ module.exports = {
 					foreground: 'hsl(var(--card-foreground))',
 				},
 			},
-			width: {
-				maxi: 'min(98%, 1280px)',
-			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -75,6 +72,9 @@ module.exports = {
 			},
 			minHeight: {
 				dvh: 'calc(100vh - 56px)',
+			},
+			maxWidth: {
+				maxi: '1280px',
 			},
 		},
 	},

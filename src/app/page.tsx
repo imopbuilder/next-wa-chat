@@ -12,7 +12,7 @@ export default function page() {
 			<Header />
 			<main>
 				<section>
-					<div className='w-maxi mx-auto py-12 min-h-dvh flex items-start justify-center'>
+					<div className='max-w-maxi mx-auto py-12 px-4 md:px-5 min-h-dvh flex items-start justify-center'>
 						<div className='w-full max-w-2xl'>
 							<TelNumberForm />
 							<Button className='w-full mt-5 font-bold' variant='outline' size='lg' type='button' asChild>
