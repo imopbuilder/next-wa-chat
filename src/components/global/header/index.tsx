@@ -3,10 +3,10 @@ import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
 	return (
-		<header className='font-medium'>
-			<div className='w-maxi mx-auto h-16 flex items-center justify-between relative before:content-[""] before:absolute before:w-full before:h-0.5 before:bg-gradient-to-r before:from-primary to-background before:left-0 before:bottom-0'>
+		<header className='relative before:content-[""] before:absolute before:w-full before:h-[1px] before:bg-gradient-to-r before:from-primary to-background before:left-0 before:bottom-0'>
+			<div className='w-maxi mx-auto h-16 flex items-center justify-between'>
 				<div>
-					<Link href='/' className='p-2 relative -left-2'>
+					<Link href='/' className='font-bold'>
 						Wa Chat
 					</Link>
 				</div>
