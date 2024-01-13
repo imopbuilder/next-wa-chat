@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { DAIL_CODES } from '@/constants/dail-codes';
-import { WA_URL } from '@/constants/wa-chat';
+import { WHATS_APP_URL } from '@/constants/wa-chat';
 import { cn } from '@/lib/utils/cn';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,7 +17,7 @@ import z from 'zod';
 
 const formSchema = z.object({
 	country: z.string({ required_error: 'Country Required' }),
-	tel: z.coerce.number({ required_error: 'Phone number required!', invalid_type_error: 'Phone number required!' }),
+	tel: z.coerce.number({ required_error: 'Telphone number required!', invalid_type_error: 'Telphone number required!' }),
 });
 
 export default function TelNumberForm() {
@@ -30,19 +30,19 @@ export default function TelNumberForm() {
 	});
 
 	function handleSubmit(data: z.infer<typeof formSchema>) {
-		// update local-storage with the phone-number
+		// Update local-storage with the tel-number
 		const phone = `${data.country}${data.tel}`;
 		const contacts: string[] = JSON.parse(getLocalStorage('contacts', JSON.stringify([])) as string);
 		!contacts.includes(phone) && setLocalStorage('contacts', JSON.stringify([...contacts, phone]));
 
-		waRef.current!.href = `${WA_URL}/${phone}?text=Hey...`;
+		waRef.current!.href = `${WHATS_APP_URL}/${phone}?text=Hey...`;
 		waRef.current!.click();
 	}
 
 	return (
 		<>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-2'>
+				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-5'>
 					<FormField
 						control={form.control}
 						name='country'
@@ -52,20 +52,27 @@ export default function TelNumberForm() {
 									<PopoverTrigger asChild>
 										<FormControl>
 											<Button
-												variant='input'
 												role='combobox'
-												className={cn('w-full justify-between py-9 px-9 rounded-full shadow-none', !field.value && 'text-muted-foreground')}
+												variant='outline'
+												className={cn('w-full h-10 justify-between border', !field.value && 'text-muted-foreground')}
 											>
-												{field.value ? DAIL_CODES.find((dailCode) => dailCode.code === field.value)?.country : 'Select country'}
+												{field.value ? (
+													<span className='font-medium'>
+														<span className='mr-3 font-aldrich'>+{DAIL_CODES.find((dailCode) => dailCode.code === field.value)?.code}</span>
+														{DAIL_CODES.find((dailCode) => dailCode.code === field.value)?.country}
+													</span>
+												) : (
+													'Select country'
+												)}
 												<CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
 											</Button>
 										</FormControl>
 									</PopoverTrigger>
-									<PopoverContent className='w-[var(--radix-popover-trigger-width)] p-0 rounded-xl' sideOffset={8}>
+									<PopoverContent className='w-[var(--radix-popover-trigger-width)] p-0 rounded-md' sideOffset={8}>
 										<Command className='rounded-xl'>
 											<CommandInput placeholder='Search country...' className='h-9 my-2 mx-1' />
 											<CommandEmpty>No country found.</CommandEmpty>
-											<CommandGroup className='overflow-y-scroll w-full h-64'>
+											<CommandGroup className='overflow-y-scroll w-full h-64 p-2'>
 												{DAIL_CODES.map((dailCode) => (
 													<CommandItem
 														key={dailCode.country}
@@ -95,7 +102,7 @@ export default function TelNumberForm() {
 							<FormItem>
 								<FormControl>
 									<Input
-										className='py-9 px-9 rounded-full font-aldrich placeholder:font-nunito'
+										className='font-aldrich placeholder:font-nunito shadow-none'
 										placeholder='Tel number'
 										type='number'
 										inputMode='numeric'
@@ -109,12 +116,12 @@ export default function TelNumberForm() {
 							</FormItem>
 						)}
 					/>
-					<Button className='w-full py-9 rounded-full font-bold' type='submit'>
+					<Button className='w-full font-bold' type='submit' size='lg'>
 						Open chat
 					</Button>
 				</form>
 			</Form>
-			<a ref={waRef} className='hidden' href={WA_URL} data-tag='wa-chat-link' target='_blank' rel='noreferrer'>
+			<a ref={waRef} className='hidden' href={WHATS_APP_URL} data-tag='wa-chat-link' target='_blank' rel='noreferrer'>
 				{' '}
 			</a>
 		</>

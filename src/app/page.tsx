@@ -11,12 +11,10 @@ export default function page() {
 			<Header />
 			<main>
 				<section>
-					<div className='w-maxi mx-auto py-5 min-h-dvh flex items-center justify-center flex-col'>
-						<div className='w-full'>
+					<div className='w-maxi mx-auto py-12 min-h-dvh flex items-start justify-center'>
+						<div className='w-full max-w-2xl'>
 							<TelNumberForm />
-						</div>
-						<div className='h-full mt-auto w-full'>
-							<Button className='w-full py-9 rounded-full' variant='outline' type='button' asChild>
+							<Button className='w-full mt-5 font-semibold' variant='outline' size='lg' type='button' asChild>
 								<Link href='/history'>History</Link>
 							</Button>
 						</div>
