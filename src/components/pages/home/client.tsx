@@ -2,16 +2,17 @@
 
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Textarea } from '@/components/ui/textarea';
 import { DAIL_CODES } from '@/constants/dail-codes';
 import { WHATS_APP_URL } from '@/constants/wa-chat';
 import { cn } from '@/lib/utils/cn';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
-import { MessageSquare } from 'lucide-react';
+import { ArrowUpRightFromCircle } from 'lucide-react';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
@@ -19,6 +20,7 @@ import z from 'zod';
 const formSchema = z.object({
 	country: z.string({ required_error: 'Country Required' }),
 	tel: z.coerce.number({ required_error: 'Telphone number required!', invalid_type_error: 'Telphone number required!' }),
+	message: z.string().optional(),
 });
 
 export default function TelNumberForm() {
@@ -27,6 +29,7 @@ export default function TelNumberForm() {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			country: DAIL_CODES.find((dailCode) => dailCode.code.toLowerCase() === '91')?.code,
+			message: 'Hey...',
 		},
 	});
 
@@ -36,7 +39,7 @@ export default function TelNumberForm() {
 		const contacts: string[] = JSON.parse(getLocalStorage('contacts', JSON.stringify([])) as string);
 		!contacts.includes(phone) && setLocalStorage('contacts', JSON.stringify([...contacts, phone]));
 
-		waRef.current!.href = `${WHATS_APP_URL}/${phone}?text=Hey...`;
+		waRef.current!.href = `${WHATS_APP_URL}/${phone}?text=${data.message}`;
 		waRef.current!.click();
 	}
 
@@ -120,9 +123,22 @@ export default function TelNumberForm() {
 							</FormItem>
 						)}
 					/>
-					<Button className='w-full font-bold' type='submit' size='lg'>
-						<MessageSquare size={18} className='mr-2.5' />
-						Open chat
+					<FormField
+						control={form.control}
+						name='message'
+						render={({ field }) => (
+							<FormItem>
+								<FormControl>
+									<Textarea placeholder='Type your message here' className='resize-none' {...field} />
+								</FormControl>
+								<FormDescription>Optional</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<Button className='w-full font-bold gap-2.5' type='submit' size='lg'>
+						<ArrowUpRightFromCircle size={18} />
+						<span>Open chat</span>
 					</Button>
 				</form>
 			</Form>
