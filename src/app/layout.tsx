@@ -1,4 +1,5 @@
 import ThemesProvider from '@/client/providers/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 import type { Metadata } from 'next';
 import { Aldrich, Nunito } from 'next/font/google';
 import '../styles/main.scss';
@@ -25,6 +26,7 @@ export default function RootLayout({
 			<body className={`${nunito.className} ${nunito.variable} ${aldrich.variable}`}>
 				<ThemesProvider attribute='class' defaultTheme='system' enableSystem>
 					{children}
+					<Toaster />
 				</ThemesProvider>
 			</body>
 		</html>
