@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils/cn';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { MessageSquare } from 'lucide-react';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
@@ -120,6 +121,7 @@ export default function TelNumberForm() {
 						)}
 					/>
 					<Button className='w-full font-bold' type='submit' size='lg'>
+						<MessageSquare size={18} className='mr-2.5' />
 						Open chat
 					</Button>
 				</form>
