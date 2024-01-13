@@ -12,7 +12,7 @@ const aldrich = Aldrich({
 
 export const metadata: Metadata = {
 	title: 'Wa Chat - Home',
-	description: 'A Next.js app used to open WhatsApp chat',
+	description: 'A Next.js app in typescript used to open WhatsApp chat using phone-number',
 };
 
 export default function RootLayout({
