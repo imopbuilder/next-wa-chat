@@ -1,3 +1,4 @@
+import Footer from '@/components/global/footer';
 import Header from '@/components/global/header';
 import TelNumberForm from '@/components/pages/home/client';
 import { Button } from '@/components/ui/button';
@@ -22,6 +23,7 @@ export default function page() {
 					</div>
 				</section>
 			</main>
+			<Footer />
 		</Fragment>
 	);
 }
