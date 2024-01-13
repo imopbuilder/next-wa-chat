@@ -1,10 +1,11 @@
 'use client';
 
+import { useCopy } from '@/client/hooks/use-copy.hook';
 import { Whatsapp } from '@/components/custom/svg/whatsapp';
 import { Button } from '@/components/ui/button';
 import { WHATS_APP_URL } from '@/constants/wa-chat';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
-import { Phone } from 'lucide-react';
+import { Copy, Phone } from 'lucide-react';
 import { Fragment, ReactNode, useEffect, useState } from 'react';
 
 export function DeleteContactBtn({ children }: { children: ReactNode }) {
@@ -37,15 +38,19 @@ export function Contacts() {
 }
 
 function ContactCard({ contact }: { contact: string }) {
+	const { handleCopy } = useCopy();
 	return (
 		<div className='py-2.5 px-3.5 mb-4 last:mb-0 bg-muted text-sm font-aldrich rounded-lg border flex items-center justify-between'>
 			<p>+{contact}</p>
-			<div className='flex items-center justify-center gap-5'>
-				<a href={`${WHATS_APP_URL}/${contact}?text=Hey...`} className='hover:scale-105 duration-200' target='_blank' rel='noreferrer'>
+			<div className='flex items-center justify-center gap-2 text-muted-foreground'>
+				<button type='button' className='p-1 hover:text-foreground duration-300' onClick={() => handleCopy(contact)}>
+					<Copy size={16} />
+				</button>
+				<a href={`${WHATS_APP_URL}/${contact}?text=Hey...`} className='p-1 hover:text-foreground duration-300' target='_blank' rel='noreferrer'>
 					<Whatsapp />
 				</a>
-				<a href={`tel:${contact}`} className='hover:scale-105 duration-200' target='_blank' rel='noreferrer'>
-					<Phone size={18} className='stroke-foreground' />
+				<a href={`tel:${contact}`} className='p-1 hover:text-foreground duration-300' target='_blank' rel='noreferrer'>
+					<Phone size={16} />
 				</a>
 			</div>
 		</div>
