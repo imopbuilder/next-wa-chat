@@ -1,30 +1,31 @@
 'use client';
 
 import { Whatsapp } from '@/components/custom/svg/whatsapp';
-import { WA_URL } from '@/constants/wa-chat';
-import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
+import { Button } from '@/components/ui/button';
+import { WHATS_APP_URL } from '@/constants/wa-chat';
+import { setLocalStorage } from '@/lib/utils/local-storage';
 import { Phone } from 'lucide-react';
-import { Fragment, ReactNode, useEffect, useState } from 'react';
+import { Fragment, ReactNode, useState } from 'react';
 
 export function DeleteContactBtn({ children }: { children: ReactNode }) {
 	return (
-		<button type='button' onClick={() => setLocalStorage('contacts', JSON.stringify([]))}>
+		<Button type='button' variant='destructive' size='icon' onClick={() => setLocalStorage('contacts', JSON.stringify([]))}>
 			{children}
-		</button>
+		</Button>
 	);
 }
 
 export function Contacts() {
 	const [contacts, setContacts] = useState<string[]>([]);
-	const localContacts = getLocalStorage('contacts', JSON.stringify([]));
+	// const localContacts = getLocalStorage('contacts', JSON.stringify([]));
 
-	if (!localContacts) return null;
+	// if (!localContacts) return null;
 
-	const parsedContacts: string[] = JSON.parse(localContacts);
+	// const parsedContacts: string[] = JSON.parse(localContacts);
 
-	useEffect(() => {
-		setContacts(parsedContacts);
-	}, [parsedContacts]);
+	// useEffect(() => {
+	// 	setContacts(parsedContacts);
+	// }, [parsedContacts]);
 
 	return (
 		<Fragment>
@@ -32,7 +33,7 @@ export function Contacts() {
 				<div key={`${index}`} className='py-3 font-aldrich rounded-full flex items-center justify-between'>
 					<p>+{contact}</p>
 					<div className='flex items-center justify-center gap-5'>
-						<a href={`${WA_URL}/${contact}?text=Hey...`} className='hover:scale-105 duration-200' target='_blank' rel='noreferrer'>
+						<a href={`${WHATS_APP_URL}/${contact}?text=Hey...`} className='hover:scale-105 duration-200' target='_blank' rel='noreferrer'>
 							<Whatsapp />
 						</a>
 						<a href={`tel:${contact}`} className='hover:scale-105 duration-200' target='_blank' rel='noreferrer'>
