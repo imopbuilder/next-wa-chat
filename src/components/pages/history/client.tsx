@@ -1,11 +1,10 @@
 'use client';
 
 import { useCopy } from '@/client/hooks/use-copy.hook';
-import { Whatsapp } from '@/components/custom/svg/whatsapp';
 import { Button } from '@/components/ui/button';
 import { WHATS_APP_URL } from '@/constants/wa-chat';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
-import { Copy, Phone } from 'lucide-react';
+import { ArrowUpRightFromCircle, Copy, Phone } from 'lucide-react';
 import { Fragment, ReactNode, useEffect, useState } from 'react';
 
 export function DeleteContactBtn({ children }: { children: ReactNode }) {
@@ -39,19 +38,34 @@ export function Contacts() {
 
 function ContactCard({ contact }: { contact: string }) {
 	const { handleCopy } = useCopy();
+
 	return (
 		<div className='py-2.5 px-3.5 mb-4 last:mb-0 bg-muted text-sm font-aldrich rounded-lg border flex items-center justify-between'>
-			<p className='relative top-0.5'>+{contact}</p>
-			<div className='flex items-center justify-center gap-2 text-muted-foreground'>
-				<button type='button' className='p-1 hover:text-foreground duration-300' onClick={() => handleCopy(contact)}>
-					<Copy size={16} />
+			<p className='relative top-0.5 sm:top-0'>+{contact}</p>
+			<div className='flex items-center justify-center gap-2'>
+				<a
+					href={`${WHATS_APP_URL}/${contact}?text=Hey...`}
+					className='flex items-center justify-center w-6 h-6 hover:bg-zinc-600 rounded-sm duration-300'
+					target='_blank'
+					rel='noreferrer'
+				>
+					<ArrowUpRightFromCircle size={12} />
+				</a>
+				<a
+					href={`tel:${contact}`}
+					className='flex items-center justify-center w-6 h-6 hover:bg-zinc-600 rounded-sm duration-300'
+					target='_blank'
+					rel='noreferrer'
+				>
+					<Phone size={12} />
+				</a>
+				<button
+					type='button'
+					className='flex items-center justify-center w-6 h-6 hover:bg-zinc-600 rounded-sm duration-300'
+					onClick={() => handleCopy(contact)}
+				>
+					<Copy size={12} />
 				</button>
-				<a href={`${WHATS_APP_URL}/${contact}?text=Hey...`} className='p-1 hover:text-foreground duration-300' target='_blank' rel='noreferrer'>
-					<Whatsapp />
-				</a>
-				<a href={`tel:${contact}`} className='p-1 hover:text-foreground duration-300' target='_blank' rel='noreferrer'>
-					<Phone size={16} />
-				</a>
 			</div>
 		</div>
 	);
