@@ -8,21 +8,19 @@ import { WHATS_APP_URL } from '@/constants/wa-chat';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils/local-storage';
 import { ArrowUpRightFromCircle, Copy, Phone } from 'lucide-react';
 import { Fragment, ReactNode, useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 export function DeleteContactBtn({ children }: { children: ReactNode }) {
 	const { contacts, deleteContacts } = useContact((state) => state);
 
+	function handleDelete() {
+		setLocalStorage('contacts', JSON.stringify([]));
+		deleteContacts();
+		toast.success('Contacts deleted successfully');
+	}
+
 	return (
-		<Button
-			type='button'
-			variant='destructive'
-			size='icon'
-			onClick={() => {
-				setLocalStorage('contacts', JSON.stringify([]));
-				deleteContacts();
-			}}
-			disabled={contacts.length === 0}
-		>
+		<Button type='button' variant='destructive' size='icon' onClick={handleDelete} disabled={contacts.length === 0}>
 			{children}
 		</Button>
 	);
