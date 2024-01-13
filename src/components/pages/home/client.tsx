@@ -109,7 +109,10 @@ export default function TelNumberForm() {
 										autoComplete='off'
 										{...field}
 										value={field.value ?? ''}
-										onChange={(e) => field.onChange(Number(e.target.value))}
+										onChange={(e) => {
+											if (e.target.value === '') return field.onChange(undefined);
+											field.onChange(Number(e.target.value));
+										}}
 									/>
 								</FormControl>
 								<FormMessage />
