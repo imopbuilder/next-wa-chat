@@ -1,7 +1,9 @@
+import Footer from '@/components/global/footer';
 import Header from '@/components/global/header';
 import { Contacts, DeleteContactBtn } from '@/components/pages/history/client';
 import { Trash2 } from 'lucide-react';
 import { Metadata } from 'next';
+import { Fragment } from 'react';
 
 export const metadata: Metadata = {
 	title: 'Wa Chat - History',
@@ -9,11 +11,11 @@ export const metadata: Metadata = {
 
 export default function page() {
 	return (
-		<>
+		<Fragment>
 			<Header />
 			<main>
 				<section>
-					<div className='max-w-2xl mx-auto py-5'>
+					<div className='max-w-2xl mx-auto py-5 min-h-dvh'>
 						<div className='flex items-center justify-between mb-3 border-b pb-3'>
 							<h2 className='text-2xl font-bold'>History</h2>
 							<DeleteContactBtn>
@@ -26,6 +28,7 @@ export default function page() {
 					</div>
 				</section>
 			</main>
-		</>
+			<Footer />
+		</Fragment>
 	);
 }
