@@ -1,4 +1,4 @@
-import NextThemesProvider from '@/client/provider/next-theme';
+import ThemesProvider from '@/client/providers/theme-provider';
 import type { Metadata } from 'next';
 import { Aldrich, Nunito } from 'next/font/google';
 import '../styles/main.scss';
@@ -23,9 +23,9 @@ export default function RootLayout({
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body className={`${nunito.className} ${nunito.variable} ${aldrich.variable}`}>
-				<NextThemesProvider attribute='class' defaultTheme='system' enableSystem>
+				<ThemesProvider attribute='class' defaultTheme='system' enableSystem>
 					{children}
-				</NextThemesProvider>
+				</ThemesProvider>
 			</body>
 		</html>
 	);

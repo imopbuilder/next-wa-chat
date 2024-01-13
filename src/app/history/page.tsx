@@ -1,4 +1,4 @@
-import Header from '@/components/pages/header';
+import Header from '@/components/global/header';
 import { Contacts, DeleteContactBtn } from '@/components/pages/history/client';
 import { Trash2 } from 'lucide-react';
 import { Metadata } from 'next';
